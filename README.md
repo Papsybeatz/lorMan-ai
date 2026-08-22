@@ -22,7 +22,7 @@ A full-stack scaffold for a jurisdiction-aware lawyers workspace. It includes a 
 
 The UI runs at `http://localhost:3000`; the API runs at `http://localhost:4000`.
 
-No AI model is bundled locally. Set `OPENAI_API_KEY` to enable the external provider adapter used by the route controllers.
+No AI model is bundled locally. Groq is supported through its OpenAI-compatible API. Set `GROQ_API_KEY` and leave `AI_PROVIDER=groq` to use Groq, or set `AI_PROVIDER=openai` with `OPENAI_API_KEY` to use OpenAI instead. The default Groq model is `llama-3.3-70b-versatile`.
 
 ## Case creation flow
 
