@@ -1,5 +1,5 @@
 import { draftingPrompt, generateWithAI, intakeSystemPrompt } from '../services/ai.js';
-import { prisma } from '../services/prisma.js';
+import { getPrisma } from '../services/prisma.js';
 
 export async function intakeController(req, res, next) {
   try {
@@ -17,6 +17,7 @@ export async function intakeController(req, res, next) {
       return res.status(400).json({ ok: false, error: 'Matter name and facts are required.' });
     }
 
+    const prisma = getPrisma();
     const savedLawyer = await prisma.lawyer.upsert({
       where: { email: lawyer.email },
       update: { name: lawyer.name, country, practiceAreas },

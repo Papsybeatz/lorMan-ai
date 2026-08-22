@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { prisma } from '../services/prisma.js';
+import { getPrisma } from '../services/prisma.js';
 
 const router = Router();
 
 router.get('/case/:id', async (req, res) => {
   try {
-    const foundCase = await prisma.case.findUnique({
+    const foundCase = await getPrisma().case.findUnique({
       where: { id: req.params.id },
       include: { documents: true, evidence: true, docketEvents: true, lawyer: true }
     });
