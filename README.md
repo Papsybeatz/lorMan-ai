@@ -5,6 +5,8 @@ A full-stack scaffold for a jurisdiction-aware lawyers workspace. It includes a 
 ## Structure
 
 - `frontend/` Next.js Pages Router app with TailwindCSS
+- `frontend/pages/` `/onboarding`, `/dashboard`, `/case/[id]`, `/intake`, `/civil`, and `/criminal`
+- `frontend/components/` `CaseCard`, `IntakeForm`, `WorkflowSection`, `DocumentViewer`, and `DocketTimeline`
 - `backend/` Express REST API and Prisma client
 - `shared/` prompts and shared types
 - `docker/` local PostgreSQL setup
