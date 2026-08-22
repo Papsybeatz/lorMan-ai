@@ -1,0 +1,3 @@
+export default function DocumentViewer({ title = 'Document preview' }) {
+  return <section className="document-viewer"><div className="document-toolbar"><span>{title}</span><button className="ghost-button">Export draft</button></div><article className="paper"><p className="paper-kicker">WORKING DRAFT / PRIVILEGED</p><h2>Statement of facts</h2><p>This document workspace is ready for generated pleadings, witness statements, and research notes. Add the relevant facts on the left and review every assumption before filing.</p><p className="placeholder-line">[ Generated content will appear here ]</p></article></section>;
+}

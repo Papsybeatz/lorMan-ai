@@ -1,0 +1,4 @@
+import Shell from '../components/Shell';
+import DocumentViewer from '../components/DocumentViewer';
+
+export default function Civil() { return <Shell eyebrow="Civil desk"><div className="page"><div className="page-intro"><div><p className="eyebrow">Civil desk</p><h1>Shape the argument.</h1></div><p className="muted">Prepare a first draft with the facts, jurisdiction, and strategic questions visible together.</p></div><div className="form-layout"><div className="intake-form"><label>Document type<select><option>Originating writ</option><option>Witness statement</option></select></label><label>Instructions<textarea rows="10" placeholder="What should this document achieve? Include the key facts, parties, and relief sought." /></label><button className="primary-button">Generate working draft <span>-&gt;</span></button></div><DocumentViewer title="Civil document preview" /></div></div></Shell>; }

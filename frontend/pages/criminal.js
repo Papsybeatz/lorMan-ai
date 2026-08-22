@@ -1,0 +1,4 @@
+import Shell from '../components/Shell';
+import DocumentViewer from '../components/DocumentViewer';
+
+export default function Criminal() { return <Shell eyebrow="Criminal desk"><div className="page"><div className="page-intro"><div><p className="eyebrow">Criminal desk</p><h1>Prepare the defense.</h1></div><p className="muted">Organize the record, test the prosecution case, and create a clear working draft for counsel review.</p></div><div className="form-layout"><div className="intake-form"><label>Defense document<select><option>Bail application</option><option>No-case submission</option></select></label><label>Case context<textarea rows="10" placeholder="Add the charge, procedural history, evidence, and the immediate objective." /></label><button className="primary-button">Generate working draft <span>-&gt;</span></button></div><DocumentViewer title="Criminal document preview" /></div></div></Shell>; }
