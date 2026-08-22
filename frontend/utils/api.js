@@ -9,3 +9,7 @@ export async function postToApi(path, payload) {
   if (!response.ok) throw new Error('The API request failed.');
   return response.json();
 }
+
+export async function createIntake(payload) {
+  return postToApi('/intake', payload);
+}
