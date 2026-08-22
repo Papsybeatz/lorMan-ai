@@ -13,7 +13,7 @@ export default function Shell({ children, eyebrow = 'Workspace' }) {
           <Link href="/criminal">Criminal desk</Link>
           <Link href="/onboarding">Preferences</Link>
         </nav>
-        <div className="sidebar-footer"><span className="avatar">AK</span><div><strong>Amara K.</strong><small>Lead counsel</small></div></div>
+        <div className="sidebar-footer"><span className="avatar">CK</span><div><strong>Charles K.</strong><small>Lead counsel</small></div></div>
       </aside>
       <main className="main-content">
         <header className="topbar"><span className="breadcrumb">Lawyers workspace / {eyebrow}</span><button className="icon-button" aria-label="Notifications">o</button></header>
