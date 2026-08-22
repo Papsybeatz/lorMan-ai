@@ -10,6 +10,7 @@ A full-stack scaffold for a jurisdiction-aware lawyers workspace. It includes a 
 - `backend/` Express REST API and Prisma client
 - `shared/` prompts and shared types
 - `docker/` local PostgreSQL setup
+- `railway.json` Railway service configuration for the monorepo root
 
 ## Run
 
@@ -21,6 +22,10 @@ A full-stack scaffold for a jurisdiction-aware lawyers workspace. It includes a 
 6. Start both apps with `npm run dev`.
 
 The UI runs at `http://localhost:3000`; the API runs at `http://localhost:4000`.
+
+## Railway deployment
+
+Create the backend service from the repository root, leaving the service root directory blank. The committed `railway.json` runs Prisma generation during build, starts the backend workspace, and checks `/health`. Add a Railway PostgreSQL service, then configure `DATABASE_URL`, `AI_PROVIDER=groq`, `GROQ_API_KEY`, `GROQ_MODEL`, and `FRONTEND_URL` in the backend service.
 
 No AI model is bundled locally. Groq is supported through its OpenAI-compatible API. Set `GROQ_API_KEY` and leave `AI_PROVIDER=groq` to use Groq, or set `AI_PROVIDER=openai` with `OPENAI_API_KEY` to use OpenAI instead. The default Groq model is `llama-3.3-70b-versatile`.
 
