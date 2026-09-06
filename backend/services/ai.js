@@ -9,7 +9,7 @@ let apiKey, baseURL;
 
 if (provider === 'openrouter') {
   apiKey = process.env.OPENROUTER_API_KEY;
-  baseURL = 'https://openrouter.ai/v1';
+  baseURL = 'https://openrouter.ai/api/v1';
 } else if (provider === 'groq') {
   apiKey = process.env.GROQ_API_KEY;
   baseURL = 'https://api.groq.com/openai/v1';
