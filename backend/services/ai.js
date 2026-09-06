@@ -1,5 +1,7 @@
 import OpenAI from 'openai';
-import { intakeSystemPrompt, draftingPrompt } from '../../shared/prompts/index.js';
+import prompts from '../../shared/prompts/index.js';
+
+const { intakeSystemPrompt, draftingPrompt } = prompts;
 
 const provider = (process.env.AI_PROVIDER || (process.env.GROQ_API_KEY ? 'groq' : 'openai')).toLowerCase();
 const apiKey = provider === 'groq' ? process.env.GROQ_API_KEY : process.env.OPENAI_API_KEY;
