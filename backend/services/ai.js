@@ -22,17 +22,35 @@ export async function generateWithAI({ systemPrompt, userInput }) {
     };
   }
 
-  const response = await client.chat.completions.create({
-    model: provider === 'groq'
-      ? (process.env.GROQ_MODEL || 'llama-3.3-70b-versatile')
-      : (process.env.OPENAI_MODEL || 'gpt-4o-mini'),
-    messages: [
-      { role: 'system', content: systemPrompt },
-      { role: 'user', content: userInput }
-    ]
-  });
+  const model = provider === 'groq'
+    ? (process.env.GROQ_MODEL || 'llama-3.3-70b-versatile')
+    : (process.env.OPENAI_MODEL || 'gpt-4o-mini');
 
-  return { mode: provider, content: response.choices[0]?.message?.content || '' };
+  try {
+    const response = await client.chat.completions.create({
+      model,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userInput }
+      ]
+    });
+
+    return { mode: provider, content: response.choices[0]?.message?.content || '' };
+  } catch (error) {
+    console.error('AI provider request failed', {
+      provider,
+      model,
+      status: error?.status,
+      message: error instanceof Error ? error.message : String(error)
+    });
+
+    return {
+      mode: 'scaffold',
+      message: 'AI generation is temporarily unavailable. The case was saved and can be retried.',
+      prompt: systemPrompt,
+      input: userInput
+    };
+  }
 }
 
 export { intakeSystemPrompt, draftingPrompt };
