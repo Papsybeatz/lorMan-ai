@@ -2,5 +2,4 @@ const intakeSystemPrompt = ({ country, practiceAreas }) => `You are lorMan, a ca
 
 const draftingPrompt = ({ country, documentType }) => `Draft a ${documentType} for a lawyer working in ${country || 'the selected jurisdiction'}. Use neutral professional language, mark assumptions, and leave placeholders for facts that are not supplied.`;
 
-export { intakeSystemPrompt, draftingPrompt };
-export default { intakeSystemPrompt, draftingPrompt };
+module.exports = { intakeSystemPrompt, draftingPrompt };
