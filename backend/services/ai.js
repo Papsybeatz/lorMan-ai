@@ -12,8 +12,17 @@ const client = apiKey
     })
   : null;
 
+console.log('[AI Init]', {
+  provider,
+  apiKeyPresent: Boolean(apiKey),
+  model: provider === 'groq'
+    ? (process.env.GROQ_MODEL || 'llama-3.3-70b-versatile')
+    : (process.env.OPENAI_MODEL || 'gpt-4o-mini')
+});
+
 export async function generateWithAI({ systemPrompt, userInput }) {
   if (!client) {
+    console.log('[AI] provider not configured');
     return {
       mode: 'scaffold',
       message: 'AI provider is not configured. Add GROQ_API_KEY or OPENAI_API_KEY to enable generation.',
@@ -35,14 +44,12 @@ export async function generateWithAI({ systemPrompt, userInput }) {
       ]
     });
 
+    console.log(`[AI] provider=${provider}, model=${model}, success=true`);
     return { mode: provider, content: response.choices[0]?.message?.content || '' };
   } catch (error) {
-    console.error('AI provider request failed', {
-      provider,
-      model,
-      status: error?.status,
-      message: error instanceof Error ? error.message : String(error)
-    });
+    const status = error?.status ?? 'unknown';
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[AI] provider=${provider}, model=${model}, status=${status}, message=${message}`);
 
     return {
       mode: 'scaffold',
