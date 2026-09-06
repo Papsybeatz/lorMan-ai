@@ -27,6 +27,8 @@ The UI runs at `http://localhost:3000`; the API runs at `http://localhost:4000`.
 
 Create the backend service from the repository root, leaving the service root directory blank. The committed `railway.json` runs Prisma generation during build, starts the backend workspace, and checks `/health`. Add a Railway PostgreSQL service, then configure `DATABASE_URL`, `AI_PROVIDER=groq`, `GROQ_API_KEY`, `GROQ_MODEL`, and `FRONTEND_URL` in the backend service.
 
+For the Vercel frontend, add `NEXT_PUBLIC_API_URL` with the Railway service URL ending in `/api` (for example, `https://lorman-api-production.up.railway.app/api`) and redeploy. The frontend only uses localhost as an API fallback during local development.
+
 No AI model is bundled locally. Groq is supported through its OpenAI-compatible API. Set `GROQ_API_KEY` and leave `AI_PROVIDER=groq` to use Groq, or set `AI_PROVIDER=openai` with `OPENAI_API_KEY` to use OpenAI instead. The default Groq model is `llama-3.3-70b-versatile`.
 
 ## Case creation flow
