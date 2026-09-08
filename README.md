@@ -34,3 +34,12 @@ No AI model is bundled locally. Groq is supported through its OpenAI-compatible 
 ## Case creation flow
 
 The intake form sends matter name, facts, practice area, urgency, jurisdiction, and lawyer identity to `POST /api/intake`. The API upserts the lawyer, creates a case and its initial intake document, then returns the new case id. The frontend redirects to `/case/[id]`, which reads the persisted case from `GET /api/case/:id`.
+
+## Lawyer testing workflow
+
+1. Open **New intake** and enter the client or matter name, the raw story, practice area, and urgency.
+2. Select **Capture intake**. lorMan creates the case, assigns a case ID, saves the raw intake, and requests an AI matter brief automatically.
+3. Review the case workspace. It displays the saved matter title and the generated brief under **WORKING DRAFT / PRIVILEGED**. If the AI provider is unavailable, the case is still saved and the workspace shows a retryable scaffold message.
+4. The docket currently remains empty unless docket events are added by a future workflow. The **Add document**, **Export draft**, and **Share workspace** controls are presentational placeholders in this MVP.
+
+The current build does not require a separate manual Intake Facts panel before brief generation, and it does not yet automatically generate pleadings, witness statements, trial strategy, filing deadlines, or court dates. Lawyers should treat the generated brief as a review draft, validate every fact, and not file it without counsel review.
