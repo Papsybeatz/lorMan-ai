@@ -42,6 +42,14 @@ export async function intakeController(req, res, next) {
     });
 
     const result = await generateWithAI({ systemPrompt: intakeSystemPrompt({ country, practiceAreas }), userInput });
+    await prisma.document.create({
+      data: {
+        name: 'AI matter brief',
+        type: 'brief',
+        content: result.content || result.message || '',
+        caseId: savedCase.id
+      }
+    });
     res.status(201).json({ ok: true, case: savedCase, result });
   } catch (error) {
     next(error);

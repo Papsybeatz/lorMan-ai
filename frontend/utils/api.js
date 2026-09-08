@@ -33,3 +33,23 @@ export async function postToApi(path, payload) {
 export async function createIntake(payload) {
   return postToApi('/intake', payload);
 }
+
+export async function getCase(id) {
+  if (!API_URL) {
+    throw new Error('The API is not configured for this deployment.');
+  }
+
+  const response = await fetch(`${API_URL.replace(/\/$/, '')}/case/${encodeURIComponent(id)}`);
+  if (!response.ok) {
+    let message = `The API request failed (${response.status}).`;
+    try {
+      const body = await response.json();
+      if (body.error) message = body.error;
+    } catch {
+      // Keep the status-based message when the server did not return JSON.
+    }
+    throw new Error(message);
+  }
+
+  return response.json();
+}
