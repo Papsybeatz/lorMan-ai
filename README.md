@@ -40,6 +40,7 @@ The intake form sends matter name, facts, practice area, urgency, jurisdiction, 
 1. Open **New intake** and enter the client or matter name, the raw story, practice area, and urgency.
 2. Select **Capture intake**. lorMan creates the case, assigns a case ID, saves the raw intake, and requests an AI matter brief automatically.
 3. Review the case workspace. It displays the saved matter title and the generated brief under **WORKING DRAFT / PRIVILEGED**. If the AI provider is unavailable, the case is still saved and the workspace shows a retryable scaffold message.
-4. The docket currently remains empty unless docket events are added by a future workflow. The **Add document**, **Export draft**, and **Share workspace** controls are presentational placeholders in this MVP.
+4. Optionally refine the matter in **Approved intake facts**. Enter one validated fact per line, save the facts, then choose **Regenerate brief**. The regenerated brief is based only on those approved facts.
+5. The docket currently remains empty unless docket events are added by a future workflow. The **Add document**, **Export draft**, and **Share workspace** controls are presentational placeholders in this MVP.
 
-The current build does not require a separate manual Intake Facts panel before brief generation, and it does not yet automatically generate pleadings, witness statements, trial strategy, filing deadlines, or court dates. Lawyers should treat the generated brief as a review draft, validate every fact, and not file it without counsel review.
+The current build keeps automatic brief generation for speed and adds a manual facts refinement layer for control. It does not yet automatically generate pleadings, witness statements, trial strategy, filing deadlines, or court dates. Lawyers should treat every generated brief as a review draft, validate every fact, and not file it without counsel review.

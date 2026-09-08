@@ -53,3 +53,28 @@ export async function getCase(id) {
 
   return response.json();
 }
+
+export async function saveCaseFacts(id, facts) {
+  const response = await fetch(`${API_URL.replace(/\/$/, '')}/case/${encodeURIComponent(id)}/facts`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ facts })
+  });
+  if (!response.ok) {
+    const body = await response.json().catch(() => ({}));
+    throw new Error(body.error || `The API request failed (${response.status}).`);
+  }
+  return response.json();
+}
+
+export async function regenerateBrief(id) {
+  const response = await fetch(`${API_URL.replace(/\/$/, '')}/case/${encodeURIComponent(id)}/brief`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  });
+  if (!response.ok) {
+    const body = await response.json().catch(() => ({}));
+    throw new Error(body.error || `The API request failed (${response.status}).`);
+  }
+  return response.json();
+}
