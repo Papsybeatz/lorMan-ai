@@ -2,6 +2,11 @@
   "name": "lorman",
   "private": true,
   "version": "0.1.0",
+  "allowScripts": [
+    "@prisma/client",
+    "@prisma/engines",
+    "prisma"
+  ],
   "workspaces": ["frontend", "backend"],
   "scripts": {
     "dev": "concurrently \"npm run dev --workspace frontend\" \"npm run dev --workspace backend\"",
