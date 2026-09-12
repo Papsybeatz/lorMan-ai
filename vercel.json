@@ -1,5 +1,5 @@
 {
   "buildCommand": "cd frontend && npm run build",
-  "installCommand": "cd frontend && npm config delete allow-scripts --location=user && npm config delete allow-scripts --location=global && npm install --ignore-scripts",
+  "installCommand": "cd frontend && unset npm_config_allow_scripts NPM_CONFIG_ALLOW_SCRIPTS && npm install --ignore-scripts",
   "outputDirectory": "frontend/.next"
 }

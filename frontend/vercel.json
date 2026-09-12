@@ -2,5 +2,5 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "installCommand": "npm config delete allow-scripts --location=user && npm config delete allow-scripts --location=global && npm install --ignore-scripts"
+  "installCommand": "unset npm_config_allow_scripts NPM_CONFIG_ALLOW_SCRIPTS && npm install --ignore-scripts"
 }
