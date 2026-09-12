@@ -3,11 +3,6 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "allowScripts": [
-    "@prisma/client",
-    "@prisma/engines",
-    "prisma"
-  ],
   "scripts": {
     "dev": "node --watch server.js",
     "start": "node server.js",
