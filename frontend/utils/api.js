@@ -1,5 +1,17 @@
+function normalizeApiUrl(value) {
+  if (!value) return value;
+
+  const url = new URL(value);
+  if (!url.pathname || url.pathname === '/') {
+    url.pathname = '/api';
+  } else {
+    url.pathname = url.pathname.replace(/\/+$/, '');
+  }
+  return url.toString().replace(/\/$/, '');
+}
+
 const configuredApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim();
-const API_URL = configuredApiUrl || (
+const API_URL = normalizeApiUrl(configuredApiUrl) || (
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:4000/api'
     : null
@@ -10,7 +22,7 @@ export async function postToApi(path, payload) {
     throw new Error('The API is not configured for this deployment.');
   }
 
-  const response = await fetch(`${API_URL.replace(/\/$/, '')}${path}`, {
+  const response = await fetch(`${API_URL}${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
@@ -39,7 +51,7 @@ export async function getCase(id) {
     throw new Error('The API is not configured for this deployment.');
   }
 
-  const response = await fetch(`${API_URL.replace(/\/$/, '')}/case/${encodeURIComponent(id)}`);
+  const response = await fetch(`${API_URL}/case/${encodeURIComponent(id)}`);
   if (!response.ok) {
     let message = `The API request failed (${response.status}).`;
     try {
@@ -55,7 +67,7 @@ export async function getCase(id) {
 }
 
 export async function saveCaseFacts(id, facts) {
-  const response = await fetch(`${API_URL.replace(/\/$/, '')}/case/${encodeURIComponent(id)}/facts`, {
+  const response = await fetch(`${API_URL}/case/${encodeURIComponent(id)}/facts`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ facts })
@@ -68,7 +80,7 @@ export async function saveCaseFacts(id, facts) {
 }
 
 export async function regenerateBrief(id) {
-  const response = await fetch(`${API_URL.replace(/\/$/, '')}/case/${encodeURIComponent(id)}/brief`, {
+  const response = await fetch(`${API_URL}/case/${encodeURIComponent(id)}/brief`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' }
   });
