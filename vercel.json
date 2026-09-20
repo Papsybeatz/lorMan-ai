@@ -1,4 +1,7 @@
 {
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://lorman-backend-production.up.railway.app"
+  },
   "buildCommand": "cd frontend && npm run build",
   "installCommand": "cd frontend && unset npm_config_allow_scripts NPM_CONFIG_ALLOW_SCRIPTS && npm install --ignore-scripts",
   "outputDirectory": "frontend/.next"
